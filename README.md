@@ -106,24 +106,38 @@ Data Cleaning for the dataset was done in power query as follows:
 After the dataset was cleaned and transformed, it was ready to be add measures(using Power BI Desktop).
 
 - The fact and dimension have been combined into one table and is shown in the data model below
+
 ![image](https://user-images.githubusercontent.com/24377958/227189926-2271cccb-016f-4f64-aa24-9b4cf5a1201c.png)
 # Data Analysis
 Add Necessary Measures
 
 ![image](https://user-images.githubusercontent.com/24377958/227189977-16799a85-6c1d-496d-9feb-99a7ae1becca.png)
-% Female = DIVIDE('All Measures'[Total Female],'All Measures'[Total Employee],"ERROR")
-% male = DIVIDE([Total Male],[Total Employee],"ERROR")
-%Due for Promotion = DIVIDE([Due for Promotion],[Total Employee],"ERROR")
-%Not Due = DIVIDE([Not Due],[Total Employee],"ERROR")
-%On Services = [On services]/[Total Employee]
-%Retrench = [Will be retrenched]/[Total Employee]
-Due for Promotion = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "due for promotion")),0,CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "due for promotion"))
-Not Due = CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "Not Due")
-On services = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services")),0,CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services"))
-Total Employee = COUNTROWS('HR Analytics Data')
-Total Female = CALCULATE([Total Employee],'HR Analytics Data'[Gender] = "Female")
-Total Male = CALCULATE('All Measures'[Total Employee],'HR Analytics Data'[Gender] = "Male")
-Will be retrenched = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched")),0,CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched"))
+
+`% Female = DIVIDE('All Measures'[Total Female], 'All Measures'[Total Employee], "ERROR")`
+
+`% Male = DIVIDE([Total Male], [Total Employee], "ERROR")`
+
+`% Due for Promotion = DIVIDE([Due for Promotion], [Total Employee], "ERROR")`
+
+`% Not Due = DIVIDE([Not Due], [Total Employee], "ERROR")`
+
+`% On Services = [On services] / [Total Employee]`
+
+`% Retrench = [Will be retrenched] / [Total Employee]`
+
+`Due for Promotion = IF(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status] = "due for promotion")), 0, CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status] = "due for promotion"))`
+
+`Not Due = CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status] = "Not Due")`
+
+`On Services = IF(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services")), 0, CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services"))`
+
+`Total Employee = COUNTROWS('HR Analytics Data')`
+
+`Total Female = CALCULATE([Total Employee], 'HR Analytics Data'[Gender] = "Female")`
+
+`Total Male = CALCULATE('All Measures'[Total Employee], 'HR Analytics Data'[Gender] = "Male")`
+
+`Will be Retrenched = IF(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched")), 0, CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched"))`
 
 
 # Data Visualization
