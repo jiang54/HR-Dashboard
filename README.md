@@ -14,8 +14,6 @@
 - [Data Analysis](https://github.com/jiang54/HR-Dashboard#Data-Analysis)
 - [Data Visualization](https://github.com/jiang54/HR-Dashboard#Data-Visualization)
 - [Insights](https://github.com/jiang54/HR-Dashboard#Insights)
-- [Tutorial Website](https://github.com/jiang54/HR-Dashboard#Tutorial-Website)
-
 ---
 
 # Problem Statement
@@ -153,7 +151,3 @@ Shown in [Data Visualization](https://github.com/jiang54/HR-Dashboard#Data-Visua
 - It can be seen that in this organization, the ratio of male to female is about 6:4. In addition, the remaining ratios (such as length of service, promotion plan, job level, etc.) are also 6:4, which shows that the organization has a certain degree of balance in these aspects, or tends to maintain relative justice and equality.
 ---
 
-# Tutorial Website
-
-Tutorial Website:
-[Tutorial Website](https://www.youtube.com/watch?v=gFKNSmO8oyA&t=186s)
