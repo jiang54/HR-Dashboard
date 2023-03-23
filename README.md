@@ -2,6 +2,7 @@
 
 
 ---
+![image](https://user-images.githubusercontent.com/24377958/227189737-396e6aea-baa5-45ea-b80d-35b6f559b299.png)
 
 
 # Table of Contents
@@ -13,7 +14,6 @@
 - [Data Analysis](https://github.com/jiang54/HR-Dashboard#Data-Analysis)
 - [Data Visualization](https://github.com/jiang54/HR-Dashboard#Data-Visualization)
 - [Insights](https://github.com/jiang54/HR-Dashboard#Insights)
-- [Virtual Case Experience Link](https://github.com/jiang54/HR-Dashboard#Virtual-Case-Experience-Link)
 
 
 ---
@@ -92,3 +92,50 @@ The tabulation below shows the `HR Analytics Data` table with its column names a
 | YearsInCurrentRole | Represents the number of years the employee has been in their current role. |
 | YearsSinceLastPromotion | Represents the number of years since the employee's last promotion. |
 | YearsWithCurrManager | Represents the number of years the employee has worked with their current manager. |
+
+
+Data Cleaning for the dataset was done in power query as follows:
+
+- Rows with missing values may carry important information and should not be indiscriminately removed
+- Each of the columns in the table were validated to have the correct data type 
+
+---
+
+# Data Modeling
+
+After the dataset was cleaned and transformed, it was ready to be add measures(using Power BI Desktop).
+
+- The fact and dimension have been combined into one table and is shown in the data model below
+![image](https://user-images.githubusercontent.com/24377958/227189926-2271cccb-016f-4f64-aa24-9b4cf5a1201c.png)
+# Data Analysis
+Add Necessary Measures
+
+![image](https://user-images.githubusercontent.com/24377958/227189977-16799a85-6c1d-496d-9feb-99a7ae1becca.png)
+% Female = DIVIDE('All Measures'[Total Female],'All Measures'[Total Employee],"ERROR")
+% male = DIVIDE([Total Male],[Total Employee],"ERROR")
+%Due for Promotion = DIVIDE([Due for Promotion],[Total Employee],"ERROR")
+%Not Due = DIVIDE([Not Due],[Total Employee],"ERROR")
+%On Services = [On services]/[Total Employee]
+%Retrench = [Will be retrenched]/[Total Employee]
+Due for Promotion = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "due for promotion")),0,CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "due for promotion"))
+Not Due = CALCULATE([Total Employee],'HR Analytics Data'[Promotion Status]  = "Not Due")
+On services = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services")),0,CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "On Services"))
+Total Employee = COUNTROWS('HR Analytics Data')
+Total Female = CALCULATE([Total Employee],'HR Analytics Data'[Gender] = "Female")
+Total Male = CALCULATE('All Measures'[Total Employee],'HR Analytics Data'[Gender] = "Male")
+Will be retrenched = if(ISBLANK(CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched")),0,CALCULATE([Total Employee],'HR Analytics Data'[Retrenchedment Status] = "Will be retrenched"))
+
+
+# Data Visualization
+
+Data visualization for the dataset is done in 2 parts to ensure a clearer and more effective presentation of the data.
+![image](https://user-images.githubusercontent.com/24377958/227189737-396e6aea-baa5-45ea-b80d-35b6f559b299.png)
+
+# Insights
+
+Shown in [Data Visualization](https://github.com/jiang54/HR-Dashboard#Data-Visualization):
+
+
+- It can be seen that in this organization, the ratio of male to female is about 6:4. In addition, the remaining ratios (such as length of service, promotion plan, job level, etc.) are also 6:4, which shows that the organization has a certain degree of balance in these aspects, or tends to maintain relative justice and equality.
+---
+
